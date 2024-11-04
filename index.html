@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo list</title>
+    <link rel="stylesheet" href="styles.css"/>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <div class="container">
+        <div id="newtask">
+            <input type="text" id="taskinfo" placeholder="Task to do....">
+            <button id="add">Add</button>
+        </div>
+        <div id="tasklist"></div>  
+      </div>
+
+
+      <script>
+        let toggle = document.getElementById("taskinfo");
+        let tasklist = document.getElementById("tasklist");
+
+        document.getElementById("add").onclick = function() {
+            if (toggle.value.length == 0) {
+                alert("Enter a task details you want to add");
+            } else {
+                tasklist.innerHTML += `
+                    <div class="task">
+                        <span id="work">${toggle.value}</span>
+                        <button class="del"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+
+                // Attach click event to the delete button
+                let alltasks = document.querySelectorAll('.del');
+                for (let i = 0; i < alltasks.length; i++) {
+                    alltasks[i].onclick = function() {
+                        this.parentNode.remove();
+                    }
+                }
+
+                toggle.value = ""; // Clear the input field
+            }
+        }
+    </script>
+
+</body>
+</html>
